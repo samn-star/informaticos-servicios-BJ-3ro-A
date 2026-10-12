@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Shoes - Tienda de Calzado Femenino en Línea</title>
+    
+    <!-- Fuente elegante de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fdfbf7; /* Fondo nude / crema muy suave */
+            color: #4a403b; /* Marrón topo elegante */
+        }
+
+        /* ENCABEZADO Y NAVEGACIÓN */
+        .barra-lateral {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            padding: 15px 30px;
+            background: #f4e8ec; /* Rosa pastel suave */
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(212, 180, 189, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #e8d3dc;
+        }
+
+        .perfil {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .perfil-imagen {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .perfil-imagen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .perfil h1 {
+            font-family: 'Playfair Display', serif;
+            color: #7d5a67;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .perfil h2 {
+            color: #b08994;
+            font-size: 13px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 12px;
+        }
+
+        .menu-boton {
+            padding: 8px 16px;
+            background: #ffffff;
+            color: #7d5a67;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 20px;
+            border: 1px solid #e8d3dc;
+            transition: all 0.3s ease;
+        }
+
+        .menu-boton:hover, .menu-boton.activo {
+            background: #d8b4bc;
+            color: #ffffff;
+            border-color: #d8b4bc;
+            box-shadow: 0 3px 10px rgba(216, 180, 188, 0.4);
+        }
+
+        /* CONTENIDO PRINCIPAL */
+        .contenido {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 160px 20px 40px;
+            min-height: 100vh;
+        }
+
+        .eslogan {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 20px;
+            color: #9c7c88;
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
+        }
+
+        /* SECCIONES */
+        .pagina-seccion {
+            display: none;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(212, 180, 189, 0.15);
+            border: 1px solid #f2e6ec;
+        }
+
+        .pagina-seccion.activa {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .titulo-seccion {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .titulo-seccion h2 {
+            font-family: 'Playfair Display', serif;
+            color: #7d5a67;
+            font-size: 26px;
+            font-weight: normal;
+        }
+
+        /* INICIO HOME */
+        .inicio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .inicio-texto p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #615550;
+        }
+
+        .boton {
+            display: inline-block;
+            background: #d8b4bc;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: background 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .boton:hover {
+            background: #c29da5;
+        }
+
+        .inicio-imagen img {
+            width: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+            max-height: 280px;
+        }
+
+        /* TABLA DE TALLAS */
+        .tabla-tallas {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .tabla-tallas th {
+            background: #f4e8ec;
+            color: #7d5a67;
+            padding: 12px;
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .tabla-tallas td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #f4e8ec;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .tabla-tallas tr:hover td {
+            background: #faf4f6;
+        }
+
+        .tabla-tallas input[type="radio"] {
+            accent-color: #d8b4bc;
+        }
+
+        /* MODELOS DE ZAPATOS (5 tipos) */
+        .modelos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .modelo-card {
+            background: #faf4f6;
+            border: 2px solid #e8d3dc;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modelo-card img {
+            width: 100%;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .modelo-card h3 {
+            font-size: 14px;
+            color: #7d5a67;
+            margin-bottom: 5px;
+        }
+
+        .modelo-card input[type="radio"] {
+            accent-color: #d8b4bc;
+        }
+
+        .modelo-card.seleccionado {
+            border-color: #9c7c88;
+            background: #f4e8ec;
+        }
+
+        /* TABLA DE COLORES PASTEL */
+        .colores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .color-card {
+            border: 1px solid #e8d3dc;
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            background: #ffffff;
+            transition: transform 0.2s;
+        }
+
+        .color-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .circulo-color {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            margin: 0 auto 8px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        /* FORMULARIO DE CHECKOUT */
+        .campo {
+            margin-bottom: 15px;
+        }
+
+        .campo label {
+            display: block;
+            color: #7d5a67;
+            font-size: 14px;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .campo input {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #e8d3dc;
+            border-radius: 8px;
+            background: #faf4f6;
+            color: #4a403b;
+            font-family: 'Poppins', sans-serif;
+            outline: none;
+        }
+
+        .campo input:focus {
+            border-color: #d8b4bc;
+            background: #ffffff;
+        }
+
+        #mensajeExito {
+            display: none;
+            background: #e2f0d9;
+            color: #385723;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            margin-top: 15px;
+            border: 1px solid #b7e1cd;
+        }
+
+        /* PIE DE PÁGINA */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #a8939a;
+            font-size: 12px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .barra-lateral { flex-direction: column; gap: 10px; padding: 10px; }
+            .inicio-grid { grid-template-columns: 1fr; }
+            .contenido { padding-top: 220px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="barra-lateral">
+        <div class="perfil">
+            <div class="perfil-imagen">
+                <!-- Imagen representativa de zapatos de mujer -->
+                <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=150" alt="Logo Zapatos">
+            </div>
+            <div>
+                <h1>Aura Shoes</h1>
+                <h2>Elegancia a tus pies</h2>
+            </div>
+        </div>
+
+        <nav class="menu">
+            <a href="#inicio" class="menu-boton activo" onclick="cambiarPestana(event, 'inicio')">Inicio</a>
+            <a href="#catalogo" class="menu-boton" onclick="cambiarPestana(event, 'catalogo')">Modelos</a>
+            <a href="#tallas" class="menu-boton" onclick="cambiarPestana(event, 'tallas')">Tallas</a>
+            <a href="#colores" class="menu-boton" onclick="cambiarPestana(event, 'colores')">Colores</a>
+            <a href="#checkout" class="menu-boton" onclick="cambiarPestana(event, 'checkout')">Comprar</a>
+        </nav>
+    </header>
+
+    <main class="contenido">
+
+        <p class="eslogan">“Camina con confianza, viste con estilo.”</p>
+
+        <!-- SECCIÓN INICIO -->
+        <section id="inicio" class="pagina-seccion activa">
+            <div class="titulo-seccion">
+                <h2>Bienvenida a nuestra boutique en línea</h2>
+            </div>
+            <div class="inicio-grid">
+                <div class="inicio-texto">
+                    <p>Descubre nuestra colección exclusiva de calzado femenino diseñada para realzar tu estilo en cada paso. Desde elegantes tacones hasta cómodas zapatillas urbanas en delicados tonos pasteles.</p>
+                    <p>Selecciona tu modelo favorito, elige tu talla y color ideal de forma rápida y sencilla.</p>
+                    <button class="boton" onclick="cambiarPestana(null, 'catalogo')">Ver Colección</button>
+                </div>
+                <div class="inicio-imagen">
+                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400" alt="Zapatos de moda">
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN MODELOS (5 TIPOS) -->
+        <section id="catalogo" class="pagina-seccion">
+            <div class="titulo-seccion">
+                <h2>1. Escoge tu Modelo de Zapatos favorito</h2>
+            </div>
+            <div class="modelos-grid">
+                <label class="modelo-card" onclick="seleccionarModelo(this)">
+                    <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=200" alt="Sandalias Elegantes">
+                    <h3>Sandalias Elegantes</h3>
+                    <input type="radio" name="modelo" value="Sandalias Elegantes">
+                </label>
+
+                <label class="modelo-card" onclick="seleccionarModelo(this)">
+                    <img src="https://images.unsplash.com/photo-1535043934128-cf0b28d52f95?w=200" alt="Tacos Altos">
+                    <h3>Tacos Altos</h3>
+                    <input type="radio" name="modelo" value="Tacos Altos">
+                </label>
+
+                <label class="modelo-card" onclick="seleccionarModelo(this)">
+                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=200" alt="Zapatillas Urbanas">
+                    <h3>Zapatillas Urbanas</h3>
+                    <input type="radio" name="modelo" value="Zapatillas Urbanas">
+                </label>
+
+                <label class="modelo-card" onclick="seleccionarModelo(this)">
+                    <img src="https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=200" alt="Botines">
+                    <h3>Botines Chic</h3>
+                    <input type="radio" name="modelo" value="Botines Chic">
+                </label>
+
+                <label class="modelo-card" onclick="seleccionarModelo(this)">
+                    <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=200" alt="Flats / Mocasines">
+                    <h3>Flats / Mocasines</h3>
+                    <input type="radio" name="modelo" value="Flats / Mocasines">
+                </label>
+            </div>
+            <div style="text-align: center; margin-top: 25px;">
+                <button class="boton" onclick="cambiarPestana(null, 'tallas')">Siguiente: Elegir Talla</button>
+            </div>
+        </section>
+
+        <!-- SECCIÓN TALLAS -->
+        <section id="tallas" class="pagina-seccion">
+            <div class="titulo-seccion">
+                <h2>2. Selecciona tu Talla de Calzado</h2>
+            </div>
+            <table class="tabla-tallas">
+                <thead>
+                    <tr>
+                        <th>Seleccionar</th>
+                        <th>Talla (EUR)</th>
+                        <th>Talla (US Mujer)</th>
+                        <th>Medida Aproximada</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><input type="radio" name="talla" value="35"></td><td>35</td><td>5.0</td><td>22.5 cm</td></tr>
+                    <tr><td><input type="radio" name="talla" value="36"></td><td>36</td><td>6.0</td><td>23.0 cm</td></tr>
+                    <tr><td><input type="radio" name="talla" value="37"></td><td>37</td><td>7.0</td><td>24.0 cm</td></tr>
+                    <tr><td><input type="radio" name="talla" value="38"></td><td>38</td><td>8.0</td><td>24.5 cm</td></tr>
+                    <tr><td><input type="radio" name="talla" value="39"></td><td>39</td><td>9.0</td><td>25.5 cm</td></tr>
+                </tbody>
+            </table>
+            <div style="text-align: center; margin-top: 25px;">
+                <button class="boton" onclick="cambiarPestana(null, 'colores')">Siguiente: Elegir Color</button>
+            </div>
+        </section>
+
+        <!-- SECCIÓN COLORES (PASTELES) -->
+        <section id="colores" class="pagina-seccion">
+            <div class="titulo-seccion">
+                <h2>3. Elige el Color en Tono Pastel</h2>
+            </div>
+            <div class="colores-grid">
+                <label class="color-card">
+                    <div class="circulo-color" style="background-color: #f7cac9;"></div>
+                    <strong>Rosa Pastel</strong>
+                    <p><input type="radio" name="color" value="Rosa Pastel"></p>
+                </label>
+                <label class="color-card">
+                    <div class="circulo-color" style="background-color: #b5ead7;"></div>
+                    <strong>Menta Suave</strong>
+                    <p><input type="radio" name="color" value="Menta Suave"></p>
+                </label>
+                <label class="color-card">
+                    <div class="circulo-color" style="background-color: #e2f0cb;"></div>
+                    <strong>Verde Pastel</strong>
+                    <p><input type="radio" name="color" value="Verde Pastel"></p>
+                </label>
+                <label class="color-card">
+                    <div class="circulo-color" style="background-color: #ffdac1;"></div>
+                    <strong>Durazno Nude</strong>
+                    <p><input type="radio" name="color" value="Durazno Nude"></p>
+                </label>
+                <label class="color-card">
+                    <div class="circulo-color" style="background-color: #e5ccff;"></div>
+                    <strong>Lavanda Lila</strong>
+                    <p><input type="radio" name="color" value="Lavanda Lila"></p>
+                </label>
+            </div>
+            <div style="text-align: center; margin-top: 25px;">
+                <button class="boton" onclick="cambiarPestana(null, 'checkout')">Finalizar Datos de Compra</button>
+            </div>
+        </section>
+
+        <!-- SECCIÓN CHECKOUT / DATOS DE ENVÍO -->
+        <section id="checkout" class="pagina-seccion">
+            <div class="titulo-seccion">
+                <h2>4. Datos de Envío y Contacto</h2>
+            </div>
+            <form id="formularioCompra" onsubmit="procesarCompra(event)">
+                <div class="campo">
+                    <label for="gmail">Correo electrónico (Gmail):</label>
+                    <input type="email" id="gmail" placeholder="tu_correo@gmail.com" required>
+                </div>
+                <div class="campo">
+                    <label for="telefono">Número de Teléfono / Contacto:</label>
+                    <input type="tel" id="telefono" placeholder="Ej: 0991234567" required>
+                </div>
+                <div class="campo">
+                    <label for="direccion">Dirección de Entrega:</label>
+                    <input type="text" id="direccion" placeholder="Calle principal, número y ciudad" required>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button type="submit" class="boton">Confirmar Pedido</button>
+                </div>
+            </form>
+            <div id="mensajeExito">¡Compra exitosa! 🎉 Tu pedido ha sido procesado correctamente. Te enviaremos los detalles a tu correo.</div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Aura Shoes. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- SCRIPT DE INTERACTIVIDAD PARA LAS PESTAÑAS -->
+    <script>
+        function cambiarPestana(event, idSeccion) {
+            if (event) event.preventDefault();
+
+            // Ocultar todas las secciones
+            const secciones = document.querySelectorAll('.pagina-seccion');
+            secciones.forEach(sec => sec.classList.remove('activa'));
+
+            // Quitar clase activo de los botones
+            const botones = document.querySelectorAll('.menu-boton');
+            botones.forEach(btn => btn.classList.remove('activo'));
+
+            // Mostrar la sección seleccionada
+            document.getElementById(idSeccion).classList.add('activa');
+
+            // Activar botón correspondiente
+            botones.forEach(btn => {
+                if (btn.getAttribute('href') === '#' + idSeccion) {
+                    btn.classList.add('activo');
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function seleccionarModelo(card) {
+            document.querySelectorAll('.modelo-card').forEach(c => c.classList.remove('seleccionado'));
+            card.classList.add('seleccionado');
+            const radio = card.querySelector('input[type="radio"]');
+            if (radio) radio.checked = true;
+        }
+
+        function procesarCompra(event) {
+            event.preventDefault();
+            document.getElementById('mensajeExito').style.display = 'block';
+            document.getElementById('formularioCompra').reset();
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>
